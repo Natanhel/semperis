@@ -17,9 +17,14 @@ export default new Vuex.Store({
     },
     setPermission(state, data) {
       const permissionsArray = JSON.parse(data);
-      ['basic', 'advanced'].forEach((key, i) => {
-        state.permission[key] = permissionsArray[i] === 1
-      })
+      if (permissionsArray) {
+        ['basic', 'advanced'].forEach((key, i) => {
+          state.permission[key] = permissionsArray[i] === 1
+        })
+      } else {
+        state.permission = {}
+      }
+
     },
     setMode(state, data) {
       state.mode = data

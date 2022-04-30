@@ -1,5 +1,5 @@
 <template>
-  <v-form ref="advanced-form">
+  <v-form ref="advancedForm">
     <h4>Server data disk space</h4>
     <v-row align="center">
       <span>
@@ -39,7 +39,7 @@
         on-icon="mdi-checkbox-outline"
         v-model="option.model"
         :disabled="!sendWeeklyAlerts"
-        @click="$emit('dirty') && $refs['advanced-form'].resetValidation()"
+        @click="$emit('dirty') && $refs.advancedForm.resetValidation()"
       />
       <span class="numbers-bigger-input">
         <v-text-field
@@ -100,7 +100,7 @@ export default {
 
   watch: {
     save() {
-      const isValid = this.$refs["advanced-form"].validate();
+      const isValid = this.$refs.advancedForm.validate();
 
       if (isValid) {
         this.$emit("saveData", {
@@ -110,7 +110,7 @@ export default {
       }
     },
     discard() {
-      this.$refs["advanced-form"].reset();
+      this.$refs.advancedForm.reset();
     },
   },
 

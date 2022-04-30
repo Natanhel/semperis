@@ -8,7 +8,7 @@
         class="mx-auto"
         max-width="100%"
       >
-        <h3 class="primary-color">Health Alerts</h3>
+        <h3 class="primary-color">{{ header }}</h3>
         <v-expansion-panels multiple v-model="panel">
           <v-expansion-panel v-for="(item, i) in modes" :key="i">
             <v-expansion-panel-header class="expansion-header">
@@ -74,22 +74,27 @@ export default {
     dirty: false,
     panel: [0, 1],
     saveTimes: 0,
+    header: "Health Alerts",
     // 0 indicate it's advanced, everything else is basic
     advancedMode: "0",
     save: false,
     discard: false,
   }),
   created() {
-    this.$store.dispatch("getPermissions")
-    this.$store.dispatch("getMode")
-    this.$store.dispatch("getFormData")
+    this.$store.dispatch("getPermissions");
+    this.$store.dispatch("getMode");
+    this.$store.dispatch("getFormData");
+
+    if (!Object.keys(this.permission).length) {
+      this.header = "No Permission";
+    }
   },
 
   computed: {
     ...mapState({
-      mode: state => state.mode,
-      formData: state => state.formData,
-      permission: state => state.permission,
+      mode: (state) => state.mode,
+      formData: (state) => state.formData,
+      permission: (state) => state.permission,
     }),
     isAdvancedMode() {
       // Check if mode is basic or not
@@ -99,7 +104,8 @@ export default {
       const panels = [];
       this.permission.basic &&
         panels.push({ title: "Basic", modeComponent: PanelBase });
-      this.isAdvancedMode && this.permission.advanced &&
+      this.isAdvancedMode &&
+        this.permission.advanced &&
         panels.push({ title: "Advanced", modeComponent: PanelAdvanced });
       return panels;
     },
@@ -108,10 +114,10 @@ export default {
     saveForm() {
       this.save = !this.save;
       this.dirty = false;
-      // localStorage.setItem("backendService", this.mode);
     },
     saveData(data) {
       Object.entries(data).forEach(([key, value]) => {
+        // this.data can't be local because it envelops all the panels data
         this.data[key] = value;
       });
       this.saveTimes += 1;
