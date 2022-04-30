@@ -193,6 +193,10 @@ export default {
   width: 8rem;
   margin: 0 0.5rem;
 }
+
+.centered-input input {
+  text-align: center;
+}
 </style>
 
 <style scoped>

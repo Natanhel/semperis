@@ -26,6 +26,7 @@
       wait
       <span class="numbers-input">
         <v-text-field
+          class="centered-input"
           v-model="wait"
           placeholder="0"
           type="number"

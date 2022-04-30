@@ -43,6 +43,7 @@
       />
       <span class="numbers-bigger-input">
         <v-text-field
+          class="centered-input"
           v-model="option.value"
           placeholder="0"
           type="number"
