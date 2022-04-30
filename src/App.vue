@@ -186,6 +186,7 @@ export default {
 .numbers-bigger-input {
   width: 7rem;
   margin: 0 0.5rem;
+  height: 5rem;
 }
 
 .dropdown-input {

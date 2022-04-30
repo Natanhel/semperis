@@ -1,5 +1,5 @@
 <template>
-  <v-form ref="advancedForm">
+  <v-form ref="advancedForm" class="expansion-size">
     <h4>Server data disk space</h4>
     <v-row align="center">
       <span>
@@ -197,5 +197,8 @@ export default {
 .disk-space-options {
   margin-left: 1rem;
   height: 3rem;
+}
+.expansion-size{
+    height: 13rem;
 }
 </style>
